@@ -1,0 +1,71 @@
+<svg viewBox="0 0 1000 420" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <!-- Global model training / application workflow diagram -->
+  <rect x="0" y="0" width="1000" height="420" fill="#0b1220"/>
+  <text x="20" y="30" fill="#7dd3fc" font-size="13" font-weight="600">TRAINING MODE</text>
+  <text x="20" y="230" fill="#7dd3fc" font-size="13" font-weight="600">APPLICATION MODE</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#38bdf8"/>
+    </marker>
+  </defs>
+
+  <!-- Training row -->
+  <g font-size="11" fill="#dce7f5">
+    <rect x="20" y="50" width="170" height="70" rx="6" fill="#111c2e" stroke="#27364d"/>
+    <text x="105" y="78" text-anchor="middle">Set sidebar fit</text>
+    <text x="105" y="94" text-anchor="middle">conditions (model order,</text>
+    <text x="105" y="110" text-anchor="middle">noise, IRF mode, …)</text>
+
+    <rect x="230" y="50" width="190" height="70" rx="6" fill="#111c2e" stroke="#27364d"/>
+    <text x="325" y="72" text-anchor="middle">Train new model…</text>
+    <text x="325" y="88" text-anchor="middle">Add image(s): decay + IRF</text>
+    <text x="325" y="104" text-anchor="middle">(+ optional shared background)</text>
+
+    <rect x="460" y="50" width="130" height="70" rx="6" fill="#0369a1"/>
+    <text x="525" y="90" text-anchor="middle" fill="white" font-weight="600">Train</text>
+    <text x="525" y="106" text-anchor="middle" fill="#dbeafe" font-size="9">flim_train_global_model_v1</text>
+
+    <rect x="630" y="50" width="150" height="70" rx="6" fill="#111c2e" stroke="#27364d"/>
+    <text x="705" y="90" text-anchor="middle">Save model…</text>
+    <text x="705" y="106" text-anchor="middle" font-size="9" fill="#8ea3bd">writes model.json</text>
+
+    <rect x="820" y="50" width="150" height="70" rx="6" fill="#111c2e" stroke="#27364d"/>
+    <text x="895" y="90" text-anchor="middle">Use this model now</text>
+    <text x="895" y="106" text-anchor="middle" font-size="9" fill="#8ea3bd">→ jumps to Application</text>
+  </g>
+  <line x1="190" y1="85" x2="228" y2="85" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="420" y1="85" x2="458" y2="85" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="590" y1="85" x2="628" y2="85" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="780" y1="85" x2="818" y2="85" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Application row -->
+  <g font-size="11" fill="#dce7f5">
+    <rect x="20" y="250" width="190" height="70" rx="6" fill="#111c2e" stroke="#27364d"/>
+    <text x="115" y="278" text-anchor="middle">Load model…</text>
+    <text x="115" y="294" text-anchor="middle" font-size="9" fill="#8ea3bd">(or arrive via "Use now")</text>
+    <text x="115" y="308" text-anchor="middle" font-size="9" fill="#8ea3bd">syncs sidebar to model settings</text>
+
+    <rect x="250" y="250" width="200" height="70" rx="6" fill="#111c2e" stroke="#27364d"/>
+    <text x="350" y="278" text-anchor="middle">Load target dataset + its IRF</text>
+    <text x="350" y="296" text-anchor="middle" font-size="9" fill="#8ea3bd">the model itself carries no IRF</text>
+
+    <rect x="490" y="250" width="200" height="70" rx="6" fill="#111c2e" stroke="#27364d"/>
+    <text x="590" y="278" text-anchor="middle">Method = FLIMLib — apply</text>
+    <text x="590" y="294" text-anchor="middle">trained global model</text>
+
+    <rect x="730" y="250" width="230" height="70" rx="6" fill="#0369a1"/>
+    <text x="845" y="280" text-anchor="middle" fill="white" font-weight="600">Run analysis</text>
+    <text x="845" y="298" text-anchor="middle" fill="#dbeafe" font-size="9">flim_apply_global_model_v1 — fits</text>
+    <text x="845" y="310" text-anchor="middle" fill="#dbeafe" font-size="9">per-pixel amplitudes to fixed τ</text>
+  </g>
+  <line x1="210" y1="285" x2="248" y2="285" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="450" y1="285" x2="488" y2="285" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="690" y1="285" x2="728" y2="285" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Cross-link -->
+  <path d="M 895 120 C 895 170, 115 200, 115 248" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+  <path d="M 705 120 C 705 190, 115 220, 115 248" fill="none" stroke="#8ea3bd" stroke-width="1.5" stroke-dasharray="3 4" marker-end="url(#arrow)"/>
+  <text x="330" y="185" fill="#34d399" font-size="9.5">"Use this model now" (direct)</text>
+  <text x="330" y="200" fill="#8ea3bd" font-size="9.5">or a saved .json via "Load model…" later</text>
+</svg>

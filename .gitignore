@@ -1,0 +1,25 @@
+# Python / tooling
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+
+# Personal configuration (holds local file paths) -- create your own via "Save as default" in the app
+default.ini
+
+# CMake / native build output (machine-specific paths and compiler probes)
+native/build*/
+native_source/build-*/
+*.exe
+
+# One-off developer diagnostics with hard-coded local data paths
+diagnose_*.py
+inspect_irf.py
+
+# Vendored Leica Interrogator .lif reader (reverse-engineered decoder + vendor-format DLL):
+# not published until its licensing has been confirmed
+flim_app/leica_bundled/

@@ -1,0 +1,2 @@
+recursive-include flim_app/native *
+recursive-include flim_app/assets *
