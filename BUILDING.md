@@ -59,6 +59,12 @@ If you add other bundled data files later, add them to `datas` in
 
 ## The bundled Leica `.lif` reader
 
+> **Not part of this repository.** `flim_app/leica_bundled/` is git-ignored
+> and not published here, so an exe built from a plain checkout has no
+> built-in `.lif` reader; `.lif` support then needs a separately installed
+> Leica Interrogator Desktop folder set in the sidebar. The rest of this
+> section describes a build from a local tree that does contain that folder.
+
 The packaged exe includes a vendored, core-only copy of Leica
 Interrogator's `leica_flim_converter` (scan + export to `.ics`, no
 PySide6/GUI) at `flim_app/leica_bundled/` -- see that folder's

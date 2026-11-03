@@ -35,8 +35,8 @@ tabbed application.
 - NumPy `.npy` and `.npz` cubes
 - multi-page `.tif` / `.tiff`
 - decay matrices in `.csv` / `.txt`
-- Leica `.lif` raw acquisitions, via a bundled integration with Leica
-  Interrogator Desktop's own converter — see
+- Leica `.lif` raw acquisitions, via Leica Interrogator Desktop's own
+  converter (not included in this repository) — see
   [Leica `.lif` integration](#leica-lif-integration) below
 
 The internal cube order is always `(y, x, time)`. For NPZ input, the preferred
@@ -278,15 +278,18 @@ FLIM Studio doesn't decode Leica's raw `.lif` format itself — it calls a
 `leica_flim_converter` package to scan and export `.lif` acquisitions to
 `.ics`, run as an isolated subprocess (the same crash-isolation approach
 used for native FLIMLib fitting, so a decode failure on an unusual file
-can't take down the main GUI). **No separate install is required**: a
-packaged FLIM Studio build ships a core (no-GUI) copy of the converter and
-runs it under its own Python environment, so `.lif` scanning/export works
-out of the box (see `flim_app/leica_bundled/README_VENDORED.md` and
-`BUILDING.md`). Pointing the sidebar's **Leica Interrogator…** control at a
-separately installed **Leica Interrogator Desktop** folder is only needed
-if you also want Interrogator's own **Full GUI…** for manual
-browsing/preview — that always takes priority over the bundled copy when
-set.
+can't take down the main GUI).
+
+**This repository does not include the converter.** The vendored core copy
+that packaged builds can carry (`flim_app/leica_bundled/`) is deliberately
+left out, so `.lif` scanning/export needs the sidebar's **Leica
+Interrogator…** control pointed at a separately installed **Leica
+Interrogator Desktop** folder (which also enables Interrogator's own
+**Full GUI…** for manual browsing/preview). With neither a configured
+folder nor a vendored copy, `.lif` files can't be opened; every other
+input format is unaffected. A build made from a checkout that does contain
+`flim_app/leica_bundled/` needs no separate install and uses it whenever no
+external folder is set.
 
 Just queue a `.lif` file the same way as any other decay file. Clicking it
 scans the file (a single `.lif` commonly contains many datasets — multiple
